@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 selection_type = ARGV[0]
 
 system("curl https://android.googlesource.com/ > html.txt")
@@ -11,6 +13,7 @@ repo_identifiers = repo_identifiers.map do |identifier|
   identifier.split(">")[1].split("<").first 
 end
 
+use_default_nameing_schemes = true
 status_msg = "Cloning "
 info = "(all)"
 unless selection_type.nil?
@@ -18,6 +21,9 @@ unless selection_type.nil?
   raise "No argument provided" if arg.nil?
 
   case selection_type
+  when "-n"
+    repo_identifiers = [arg]
+    use_default_nameing_schemes = false
   when "-p"
     info = "matching the pattern `#{arg}`"
     repo_identifiers = repo_identifiers.select do |item| 
@@ -29,7 +35,7 @@ unless selection_type.nil?
   when "-r"
     endix = ARGV[2]
     raise "No till index provided." if endix.nil?
-    info = "(fetching the the repos [#{arg},#{endidx}]repo(s))"
+    info = "(fetching the the repos [#{arg},#{endix}]repo(s))"
     repo_identifiers = repo_identifiers[(arg.to_i-1)..(endix.to_i-1)] 
   end
 end
@@ -41,7 +47,8 @@ user_input = STDIN.gets.chomp
 if (user_input.downcase.eql? 'y')
 
   # fetch repos here
-  uri = "https://android.googlesource.com/"
+  uri = (use_default_nameing_schemes)? "https://android.googlesource.com/" : ""
+  
   repo_identifiers.each do |repo_identifier|
     system("cd ./repos/ && git clone #{uri}#{repo_identifier}")
     dir_name = repo_identifier.split("/").join("_")
