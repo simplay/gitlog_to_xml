@@ -2,7 +2,16 @@
 
 selection_type = ARGV[0]
 
-system("curl https://android.googlesource.com/ > html.txt")
+should_download_page = true
+if Dir["./html.txt"].count > 0
+  print "The googlesource `html.txt` file already exists. Do you want to redownload it [y/n]? "
+  should_download_page = STDIN.gets.chomp.downcase.eql?("y")
+end
+
+if should_download_page
+  system("curl https://android.googlesource.com/ > html.txt")
+end
+
 html_file = File.open("html.txt", "r")
 contents = html_file.read
 repo_link_div = contents.split("class=\"RepoList\"").last
@@ -37,6 +46,8 @@ unless selection_type.nil?
     raise "No till index provided." if endix.nil?
     info = "(fetching the the repos [#{arg},#{endix}]repo(s))"
     repo_identifiers = repo_identifiers[(arg.to_i-1)..(endix.to_i-1)] 
+  else
+    raise "Unknown parameter #{selection_type}"
   end
 end
 
