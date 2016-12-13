@@ -19,10 +19,11 @@ Cloned repositores are saved to `./repos/`
 
 + Clone all repositories: `ruby source_extractor.rb`
 + Clone all repositires matching a given pattern: `ruby source_extractor.rb -p PATTERN`
+ + example: `ruby source_extractor.rb -p device/asus` clones 7 Asus subprojects.
 + Clone the first N repositories: `ruby source_extractor.rb -f N`
 + Clone all repositories between A and B: `ruby source_extractor.rb -r A B`
 + Clone a repository by uri: `ruby source_extractor.rb -n URI`
- + example: `ruby source_extractor.rb -n https://github.com/simplay/daily_quests` 
+ + example: `ruby source_extractor.rb -n https://github.com/simplay/daily_quests` clones the given github source.
 
 ### Generate xml files
 
