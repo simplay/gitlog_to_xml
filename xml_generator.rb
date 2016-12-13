@@ -15,7 +15,7 @@ process_git_tree_cmd = "git log --pretty=format:\" <change>%n <author_name>%an</
 
 repository_sources.each do |repo_source|
   repo_name = repo_source.split("/").last
-  open("#{out_path}/#{repo_name}.xml", 'a') do |file|
+  open("#{out_path}/#{repo_name}.xml", 'w') do |file|
     file << "<?xml version=\"1.0\"?>\n"
     file << "<changes>\n"
   end
