@@ -26,18 +26,15 @@ end
 
 repository_sources.each do |repo_source|
   repo_name = repo_source.split("/").last
-  #change_to_most_recently
-  # git branch --sort=-committerdate
-  # take most recently updated branch if master empty or one commit
-  target_branch = "master"
   
   branch_count = `cd ./#{repo_source} && git branch -a --sort=-committerdate | cat | wc -l`
   branch_count = branch_count.chomp.lstrip.to_i
   if (branch_count > 1) && !skip
-    most_recent = `git branch -a --sort=-committerdate | cat | head -n 1`
-    most_recent = most_recent.chomp.lstrip
-    most_recent = most_recent.split("/").last
-    system("cd ./#{repo_source} && git checkout #{most_recent}")
+    most_recent_branch = `cd ./#{repo_source} && git branch -a --sort=-committerdate | cat | head -n 1`
+    
+    most_recent_branch = most_recent_branch.chomp.lstrip
+    most_recent_branch = most_recent_branch.split("/").last
+    system("cd ./#{repo_source} && git checkout #{most_recent_branch}")
   end
 
 
