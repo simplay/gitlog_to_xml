@@ -29,7 +29,11 @@ Cloned repositores are saved to `./repos/`
 
 To generate the xml files, run: `ruby xml_generator.rb`
 Generated xml files are named after their corresponding repository directory name (see `./repos/`)
-and are stored in `./out/`.
+and are stored in `./out/`. This command will use the most recent branch (accordinging to the newest commit).
+
+To generate the xml files, run: `ruby xml_generator.rb SOMETHING` using the master branch.
+
+example: `ruby xml_generator.rb 1`
 
 
 
