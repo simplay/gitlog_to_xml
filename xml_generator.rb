@@ -9,8 +9,8 @@ repository_sources = Dir["repos/*"]
 # @example git_log_cmd_for("kernel_samsung")
 # @param project_name [String] name of project
 def git_log_cmd_for(project_name)
-  process_git_tree_cmd = "git log --pretty=format:\" <change>%n <author_name>%an</author_name>%n
-  <author_e_mail>%ae</author_e_mail>%n <author_date>%ad</author_date>%n
+  process_git_tree_cmd = "git log --pretty=format:\" <change>%n <commit_hash>%H</commit_hash>%n <tree_hash>%T</tree_hash>%n <parent_hashes>%P</parent_hashes>%n <author_name>%an</author_name>%n
+  <author_email>%ae</author_email>%n <author_date>%ad</author_date>%n
   <committer_name>%cn</committer_name>%n <committer_email>%ce</committer_email>%n
   <committer_date>%cd</committer_date>%n <project>#{project_name}</project>%n
   <subject>%s</subject>%n </change>\""
