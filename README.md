@@ -21,7 +21,8 @@ Cloned repositores are saved to `./repos/`
 + Clone all repositires matching a given pattern: `ruby source_extractor.rb -p PATTERN`
  + example: `ruby source_extractor.rb -p device/asus` clones 7 Asus subprojects.
 + Clone the first N repositories: `ruby source_extractor.rb -f N`
-+ Clone all repositories between A and B: `ruby source_extractor.rb -r A B`
++ Clone all repositories between the i-th and j-th repository entry within the googelsource repository list: `ruby source_extractor.rb -r i j`
+ + example: `ruby source_extractor.rb -r 1 100` download all repositories from the first repository until (and with) the 100th repository.
 + Clone a repository by uri: `ruby source_extractor.rb -n URI`
  + example: `ruby source_extractor.rb -n https://github.com/simplay/daily_quests` clones the given github source.
 
