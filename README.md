@@ -13,7 +13,9 @@ The former script responsible for cloning the target googlesource repositories w
 
 ## Usage
 
-### Clone repositories
+First _clone your target repositories_ (**1**) and then _generate the xml_ file (**2**). Please do not forget to re-run the xml generator script after you have invoked the source extractor script.
+
+### Clone repositories (1) [source_extractor.rb]
 
 Cloned repositores are saved to `./repos/`
 
@@ -26,7 +28,7 @@ Cloned repositores are saved to `./repos/`
 + Clone a repository by uri: `ruby source_extractor.rb -n URI`
  + example: `ruby source_extractor.rb -n https://github.com/simplay/daily_quests` clones the given github source.
 
-### Generate xml files
+### Generate xml files (2) [xml_generator.rb]
 
 To generate the xml files, run: `ruby xml_generator.rb`
 Generated xml files are named after their corresponding repository directory name (see `./repos/`)
